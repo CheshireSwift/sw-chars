@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <title></title>
+  </head>
+  <body>
+    <div id="react" />
+
+      <script src="https://www.gstatic.com/firebasejs/4.11.0/firebase.js"></script>
+      <script src="https://www.gstatic.com/firebasejs/4.11.0/firebase-firestore.js"></script>
+      <script crossorigin src="https://unpkg.com/react@16/umd/react.production.min.js"></script>
+      <script crossorigin src="https://unpkg.com/react-dom@16/umd/react-dom.production.min.js"></script>
+      <script crossorigin src="https://swift.swifteagle.co.uk/hyperscript.js"></script>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/lodash.js/4.17.5/lodash.core.min.js" integrity="sha256-/WikzFcmjMZS+es0fni22evPN2lgZh8Dk2XXI/ZFtxM=" crossorigin="anonymous"></script>
+      <script>
+        document.write('<script src="http://' + (location.host || 'localhost').split(':')[0] +
+          ':35729/livereload.js?snipver=1"></' + 'script>')
+        </script> 
+        <script>
+          'use strict';
+
+// Initialize Firebase
+const config = {
+  apiKey: "AIzaSyCkjQ3_8cdDxWc4xkjXxACwBsDgTHtUXn8",
+  authDomain: "sw-chars.firebaseapp.com",
+  databaseURL: "https://sw-chars.firebaseio.com",
+  projectId: "sw-chars",
+  storageBucket: "sw-chars.appspot.com",
+  messagingSenderId: "102407410694"
+};
+
+firebase.initializeApp(config);
+
+const db = firebase.firestore();
+const queryParams = (new URL(document.location)).searchParams;
+const docId = queryParams.get('d');
+const docRef = db.collection('chars').doc(docId);
+
+class BoundField extends React.Component {
+  componentDidMount() {
+    const { inputField } = this;
+    const fieldName = this.props.field;
+
+    inputField.addEventListener('change', e => {
+      docRef.set({ [fieldName]: inputField.value || null }, { merge: true });
+    });
+
+    docRef.onSnapshot(doc => {
+      inputField.value = doc.data()[fieldName] || '';
+    });
+
+    docRef.get().then(doc => {
+      if (doc.exists) {
+        inputField.value = doc.data()[fieldName] || '';
+      }
+    });
+  }
+
+  render() {
+    const { field } = this.props;
+    const prettyPrintedField = field
+      .replace(/([a-z])([A-Z])/g, '$1 $2');
+
+    return h([
+      h('label', { for: field }, [ prettyPrintedField ]),
+      h('input#' + field, {
+        ref: r => {this.inputField = r},
+        type: 'text',
+      })
+    ]);
+  }
+}
+
+const BoundFieldset = props => (
+  h('section', {
+    style: {
+      display: 'grid',
+      gridTemplateColumns: 'auto 100fr',
+      gridColumnGap: '1em',
+      gridRowGap: '0.5em',
+    },
+  }, _.map(props.fields,
+    field => h(BoundField, { key: field, field })
+  ))
+);
+
+const App = props => h(BoundFieldset, {
+  fields: [
+    'AgentName',
+    'Codename',
+    'Alias',
+    'Division',
+    'Branch',
+    'BranchBenefit',
+    'Informants',
+    'Rank',
+    'XP',
+    'Funds',
+    'Origin',
+    'Description',
+  ]
+});
+
+ReactDOM.render(h(App), document.getElementById('react'));
+        </script>
+  </body>
+</html>
