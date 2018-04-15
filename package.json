@@ -1,0 +1,24 @@
+{
+  "name": "sw-chars",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "browserify": {
+    "transform": [
+      "browserify-shim"
+    ]
+  },
+  "browserify-shim": {
+    "react": "global:React"
+  },
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "eslint": "^4.19.0",
+    "eslint-config-cheshireswift": "^2.0.0",
+    "eslint-plugin-react": "^7.7.0"
+  }
+}
