@@ -21,7 +21,7 @@ const SheetField = props => h('div', {
       left: _.get(props.position, 'left'),
       width: _.get(props.position, 'width'),
       height: _.get(props.position, 'height'),
-      background: '#cccccccc',
+      background: '#f8f888d8',
       border: 'none',
       pointerEvents: 'auto',
       ...props.style,
