@@ -1,3 +1,5 @@
+import DiceRadio from './DiceRadio.js'
+
 export default {
   'AgentName': {
     position: { bottom: '20.5%', left: '17.5%', width: '29.5%' },
@@ -33,7 +35,7 @@ export default {
     position: { bottom: '41.5%', left: '12%', width: '35%' },
   },
   'Description': {
-    tag: 'textarea',
+    component: 'textarea',
     position: { bottom: '47%', left: '3%', width: '43%' },
   },
   'Pace': {
@@ -53,19 +55,39 @@ export default {
     position: { bottom: '60.5%', left: '40%', width: '2%' },
   },
   'Languages': {
-    tag: 'textarea',
+    component: 'textarea',
     position: { bottom: '70%', left: '16%', width: '32%', height: '10%' },
   },
   'Hindrances': {
-    tag: 'textarea',
+    component: 'textarea',
     position: { bottom: '83%', left: '1%', width: '25.5%', height: '10%' },
   },
   'Edges': {
-    tag: 'textarea',
+    component: 'textarea',
     position: { bottom: '125%', left: '1%', width: '25.5%', height: '31%' },
   },
   'DefiningInterests': {
-    tag: 'textarea',
+    component: 'textarea',
     position: { bottom: '111%', left: '30%', width: '18.5%', height: '10%' },
+  },
+  'Agility': {
+    component: DiceRadio,
+    position: { bottom: '24.1%', left: '66.1%', height: '15%' },
+  },
+  'Smarts': {
+    component: DiceRadio,
+    position: { bottom: '27.2%', left: '66.1%', height: '13%' },
+  },
+  'Strength': {
+    component: DiceRadio,
+    position: { bottom: '30.3%', left: '66.1%', height: '12%' },
+  },
+  'Spirit': {
+    component: DiceRadio,
+    position: { bottom: '33.3%', left: '66.1%', height: '11%' },
+  },
+  'Vigor': {
+    component: DiceRadio,
+    position: { bottom: '36.4%', left: '66.1%', height: '10%' },
   },
 }

@@ -14,7 +14,8 @@ const SheetField = props => h('div', {
     pointerEvents: 'none',
   },
 }, [
-  h(`${props.tag}#${props.field}`, {
+  h(props.component, {
+    id: props.field,
     style: {
       position: 'absolute',
       bottom: 0,
@@ -27,7 +28,7 @@ const SheetField = props => h('div', {
       ...props.style,
     },
     type: props.type,
-    value: props.value,
+    value: props.value || '',
     onChange: e => { props.onChange(e.target.value) },
   }),
 ])
@@ -35,9 +36,9 @@ const SheetField = props => h('div', {
 SheetField.propTypes = {
   field: PropTypes.string.isRequired,
   value: PropTypes.string,
-  tag: PropTypes.string,
+  component: PropTypes.oneOf([ PropTypes.string, PropTypes.func ]),
   type: PropTypes.string,
-  onChange: PropTypes.function,
+  onChange: PropTypes.func,
   position: PropTypes.shape({
     top: PropTypes.number.isRequired,
     left: PropTypes.number.isRequired,
@@ -49,7 +50,7 @@ SheetField.propTypes = {
 
 SheetField.defaultProps = {
   value: '',
-  tag: 'input',
+  component: 'input',
   type: 'text',
   onChange: () => {},
   style: {},
