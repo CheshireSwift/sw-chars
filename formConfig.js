@@ -38,22 +38,34 @@ export default {
   },
   'Pace': {
     style: { borderRadius: 9999, padding: '1%' },
-    position: { bottom: '55.5%', left: '19.5%', width: '3%' },
+    position: { bottom: '55.5%', left: '19.5%', width: '2%' },
   },
   'Toughness': {
     style: { borderRadius: 9999, padding: '1%' },
-    position: { bottom: '55.5%', left: '40%', width: '3%' },
+    position: { bottom: '55.5%', left: '40%', width: '2%' },
   },
   'Parry': {
     style: { borderRadius: 9999, padding: '1%' },
-    position: { bottom: '60.5%', left: '19.5%', width: '3%' },
+    position: { bottom: '60.5%', left: '19.5%', width: '2%' },
   },
   'Charisma': {
     style: { borderRadius: 9999, padding: '1%' },
-    position: { bottom: '60.5%', left: '40%', width: '3%' },
+    position: { bottom: '60.5%', left: '40%', width: '2%' },
   },
   'Languages': {
     tag: 'textarea',
     position: { bottom: '70%', left: '16%', width: '32%', height: '10%' },
+  },
+  'Hindrances': {
+    tag: 'textarea',
+    position: { bottom: '83%', left: '1%', width: '25.5%', height: '10%' },
+  },
+  'Edges': {
+    tag: 'textarea',
+    position: { bottom: '125%', left: '1%', width: '25.5%', height: '31%' },
+  },
+  'DefiningInterests': {
+    tag: 'textarea',
+    position: { bottom: '111%', left: '30%', width: '18.5%', height: '10%' },
   },
 }
