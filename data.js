@@ -20,6 +20,10 @@ export const db = firebase.firestore()
 
 const queryParams = (new URL(document.location)).searchParams
 const docId = queryParams.get('d')
+if (!docId) {
+  alert('No sheet ID; require "?d=sheetId" in URL')
+}
+
 export const docRef = db.collection('chars').doc(docId)
 
 export default db
