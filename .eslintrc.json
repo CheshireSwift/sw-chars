@@ -1,0 +1,21 @@
+{
+  "extends": "cheshireswift",
+  "plugins": ["react"],
+  "env": {
+    "browser": true
+  },
+  "globals": {
+    "_": true,
+    "firebase": true,
+    "h": true,
+    "hyperscriptHelpers": true,
+    "nativeTags": true,
+    "PropTypes": true,
+    "ReactDOM": true,
+    "ReactModal": true,
+    "React": true
+  },
+  "rules": {
+    "react/prop-types": [ "error" ]
+  }
+}
