@@ -44,7 +44,7 @@ export default {
   },
   'Toughness': {
     style: { borderRadius: 9999, padding: '1%' },
-    position: { bottom: '56.5%', left: '40%', width: '2%' },
+    position: { bottom: '56.5%', left: '40.3%', width: '2%' },
   },
   'Parry': {
     style: { borderRadius: 9999, padding: '1%' },
@@ -52,7 +52,7 @@ export default {
   },
   'Charisma': {
     style: { borderRadius: 9999, padding: '1%' },
-    position: { bottom: '61.5%', left: '40%', width: '2%' },
+    position: { bottom: '61.5%', left: '40.3%', width: '2%' },
   },
   'Languages': {
     component: 'textarea',

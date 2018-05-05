@@ -1,6 +1,6 @@
 'use strict'
 
-const { div, img } = nativeTags
+const { button, div, img } = nativeTags
 
 const cloudinaryUser = 'swifteagle'
 const imageKey = 'v1525446382/AoOSheet.png'
@@ -39,18 +39,30 @@ const backgroundUrl = (theme) => {
   return `//res.cloudinary.com/${cloudinaryUser}/image/upload/${transformations}/${imageKey}`
 }
 
-const ThemeSelector = () => div({ style: { position: 'absolute', width: '100%', paddingTop: '39%' } },
+const ThemeSelectorButton = () => div({ style: {
+  position: 'absolute',
+  bottom: 0,
+  height: '69%',
+  width: '10%',
+  right: 0,
+} })
+
+const ThemeSelector = props => div({ style: { position: 'absolute', width: '100%', paddingTop: '39%' } },
   h(Popup, {
-    trigger: () => div({ style: {
-      position: 'absolute',
-      bottom: 0,
-      height: '69%',
-      width: '10%',
-      right: 0,
-    } }),
+    trigger: ThemeSelectorButton,
+    contentStyle: { width: 'initial' },
     position: 'left center',
     closeOnDocumentClick: true,
-  }, 'waffles')
+  },
+  themes.concat([ null ]) // include option to reset
+    .map(theme => div({ key: theme },
+      button({
+        style: { border: 'none', background: 'none', margin: 5 },
+        disabled: props.currentTheme === theme,
+        onClick: () => { props.selectTheme(theme) },
+      }, theme || 'default')
+    ))
+  )
 )
 
 class BackgroundSheet extends React.Component {
@@ -58,14 +70,13 @@ class BackgroundSheet extends React.Component {
     super(props)
     const themeOverride = (new URL(document.location)).searchParams.get('t')
     this.state = {
-      themeIndex: _.indexOf(themes, themeOverride) || -1,
-      showModal: false,
+      selectedTheme: themeOverride,
     }
   }
 
   theme() {
     switch (true) {
-      case this.state.themeIndex >= 0: return 'e_art:' + themes[this.state.themeIndex]
+      case !!this.state.selectedTheme: return 'e_art:' + this.state.selectedTheme
       default: return 'e_sepia:80'
     }
   }
@@ -76,17 +87,10 @@ class BackgroundSheet extends React.Component {
         src: backgroundUrl(this.theme()),
         style: { width: '100%', position: 'absolute', top: 0, left: 0 },
       }),
-      div({
-        //onClick: () => { this.setState({ themeIndex: (this.state.themeIndex + 1) % themes.length }) },
-        onClick: () => { this.setState({ showModal: true }) },
-        style: {
-          height: '75%', width: '10%',
-          position: 'absolute',
-          right: 0,
-          top: 0,
-        },
+      h(ThemeSelector, {
+        currentTheme: this.state.selectedTheme,
+        selectTheme: selectedTheme => { this.setState({ selectedTheme })},
       }),
-      h(ThemeSelector, { open: this.state.showModal, close: () => { this.setState({ showModal: false }) } }),
     ])
   }
 }
