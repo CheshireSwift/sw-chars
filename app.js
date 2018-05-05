@@ -13,4 +13,6 @@ const App = () => h(React.Fragment, [
   h(BoundSheet, { docRef }),
 ])
 
-ReactDOM.render(h(App), document.getElementById('react'))
+const appElement = document.getElementById('react')
+ReactModal.setAppElement(appElement)
+ReactDOM.render(h(App), appElement)

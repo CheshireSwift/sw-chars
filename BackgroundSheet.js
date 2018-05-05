@@ -1,8 +1,9 @@
-/* eslint-env browser */
-/* global
-  _ React h
-  */
 'use strict'
+
+const { div, img } = nativeTags
+
+const cloudinaryUser = 'swifteagle'
+const imageKey = 'v1525446382/AoOSheet.png'
 
 const themes = [
   'al_dente',
@@ -33,6 +34,15 @@ const backgroundWidth = _([ 1024, 1280, 1366, 1440, 1600, 1680, 1920 ])
   .find(width => width >= largestDimension)
   || 2550
 
+const backgroundUrl = (theme) => {
+  const transformations = _.filter([ 'c_limit', theme, `w_${backgroundWidth}` ]).join(',')
+  return `//res.cloudinary.com/${cloudinaryUser}/image/upload/${transformations}/${imageKey}`
+}
+
+const ThemeSelector = props => h(ReactModal,
+  { isOpen: props.open },
+  h('button', { onClick: props.close }, 'Close')
+)
 
 class BackgroundSheet extends React.Component {
   constructor(props) {
@@ -40,6 +50,7 @@ class BackgroundSheet extends React.Component {
     const themeOverride = (new URL(document.location)).searchParams.get('t')
     this.state = {
       themeIndex: _.indexOf(themes, themeOverride) || -1,
+      showModal: false,
     }
   }
 
@@ -52,20 +63,21 @@ class BackgroundSheet extends React.Component {
 
   render() {
     return h(React.Fragment, [
-      h('img', {
-        src:`//res.cloudinary.com/swifteagle/image/upload/c_limit,${this.theme()},w_${backgroundWidth}/v1525446382/AoOSheet.png`,
+      img({
+        src: backgroundUrl(this.theme()),
         style: { width: '100%', position: 'absolute', top: 0, left: 0 },
       }),
-      h('div', {
-        onClick: () => { this.setState({ themeIndex: (this.state.themeIndex + 1) % themes.length }) },
+      div({
+        //onClick: () => { this.setState({ themeIndex: (this.state.themeIndex + 1) % themes.length }) },
+        onClick: () => { this.setState({ showModal: true }) },
         style: {
           height: '75%', width: '10%',
           position: 'absolute',
-          //border: '1px solid magenta',
           right: 0,
           top: 0,
         },
       }),
+      h(ThemeSelector, { open: this.state.showModal, close: () => { this.setState({ showModal: false }) } }),
     ])
   }
 }
