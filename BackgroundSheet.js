@@ -39,9 +39,18 @@ const backgroundUrl = (theme) => {
   return `//res.cloudinary.com/${cloudinaryUser}/image/upload/${transformations}/${imageKey}`
 }
 
-const ThemeSelector = props => h(ReactModal,
-  { isOpen: props.open },
-  h('button', { onClick: props.close }, 'Close')
+const ThemeSelector = () => div({ style: { position: 'absolute', width: '100%', paddingTop: '39%' } },
+  h(Popup, {
+    trigger: () => div({ style: {
+      position: 'absolute',
+      bottom: 0,
+      height: '69%',
+      width: '10%',
+      right: 0,
+    } }),
+    position: 'left center',
+    closeOnDocumentClick: true,
+  }, 'waffles')
 )
 
 class BackgroundSheet extends React.Component {

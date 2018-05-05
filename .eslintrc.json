@@ -5,15 +5,15 @@
     "browser": true
   },
   "globals": {
-    "_": true,
     "firebase": true,
     "h": true,
-    "hyperscriptHelpers": true,
     "nativeTags": true,
+    "Popup": true,
     "PropTypes": true,
     "ReactDOM": true,
     "ReactModal": true,
-    "React": true
+    "React": true,
+    "_": true
   },
   "rules": {
     "react/prop-types": [ "error" ]

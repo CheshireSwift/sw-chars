@@ -10,5 +10,4 @@ const App = () => h(React.Fragment, [
 ])
 
 const appElement = document.getElementById('react')
-ReactModal.setAppElement(appElement)
 ReactDOM.render(h(App), appElement)
