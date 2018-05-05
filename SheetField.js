@@ -30,6 +30,7 @@ const SheetField = props => h('div', {
     type: props.type,
     value: props.value || '',
     onChange: e => { props.onChange(e.target.value) },
+    position: props.position,
   }),
 ])
 
