@@ -70,24 +70,26 @@ export default {
     component: 'textarea',
     position: { bottom: '111%', left: '30%', width: '18.5%', height: '10%' },
   },
-  'Agility': {
+  /* Attributes - do not reorder, or click zones break! */
+  'Vigor': {
     component: DiceRadio,
-    position: { bottom: '24.1%', left: '66.1%', height: '15%' },
-  },
-  'Smarts': {
-    component: DiceRadio,
-    position: { bottom: '27.2%', left: '66.1%', height: '13%' },
-  },
-  'Strength': {
-    component: DiceRadio,
-    position: { bottom: '30.3%', left: '66.1%', height: '12%' },
+    position: { bottom: '36.4%', left: '66.1%', height: '10%' },
   },
   'Spirit': {
     component: DiceRadio,
     position: { bottom: '33.3%', left: '66.1%', height: '11%' },
   },
-  'Vigor': {
+  'Strength': {
     component: DiceRadio,
-    position: { bottom: '36.4%', left: '66.1%', height: '10%' },
+    position: { bottom: '30.3%', left: '66.1%', height: '12%' },
   },
+  'Smarts': {
+    component: DiceRadio,
+    position: { bottom: '27.2%', left: '66.1%', height: '13%' },
+  },
+  'Agility': {
+    component: DiceRadio,
+    position: { bottom: '24.1%', left: '66.1%', height: '15%' },
+  },
+  /* /Attributes */
 }
