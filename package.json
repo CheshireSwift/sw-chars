@@ -18,7 +18,7 @@
   "license": "ISC",
   "devDependencies": {
     "eslint": "^4.19.0",
-    "eslint-config-cheshireswift": "^2.0.0",
+    "eslint-config-cheshireswift": "^3.1.0",
     "eslint-plugin-react": "^7.7.0"
   }
 }
