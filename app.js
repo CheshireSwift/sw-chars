@@ -1,7 +1,3 @@
-/* eslint-env browser */
-/* global
-  React ReactDOM h
-  */
 'use strict'
 
 import { docRef } from './data.js'

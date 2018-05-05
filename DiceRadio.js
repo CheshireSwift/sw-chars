@@ -1,8 +1,6 @@
-/* global
-  h
-  PropTypes
-  */
 'use strict'
+
+const { div } = nativeTags
 
 const bubbleWidth = 18
 const radioWidth = 17.5
@@ -34,10 +32,10 @@ function shadow(applyShadow) {
 }
 
 
-const DiceRadio = props => h('div', { style: { ...props.style, ...radioGroupStyle } },
+const DiceRadio = props => div({ style: { ...props.style, ...radioGroupStyle } },
   diceValues.map(d =>
-    h('div', { style: { paddingTop: `${paddingCalc(props)}%`, width: `${bubbleWidth}%` } },
-      h('div', {
+    div({ style: { paddingTop: `${paddingCalc(props)}%`, width: `${bubbleWidth}%` } },
+      div({
         key: d,
         style: { ...ringStyle, boxShadow: shadow(props.value === d) },
         ref: e => { if (e) { e.value = d } }, // make event handling play nice by simulating input fields
@@ -48,11 +46,11 @@ const DiceRadio = props => h('div', { style: { ...props.style, ...radioGroupStyl
 )
 
 DiceRadio.propTypes = {
-  style: PropTypes.objectOf(PropTypes.string),
-  id: PropTypes.string,
-  value: PropTypes.number,
-  onChange: PropTypes.func,
-  position: PropTypes.objectOf(PropTypes.string),
+  style: PropTypes.objectOf(PropTypes.string).isRequired,
+  id: PropTypes.string.isRequired,
+  value: PropTypes.number.isRequired,
+  onChange: PropTypes.func.isRequired,
+  position: PropTypes.objectOf(PropTypes.string).isRequired,
 }
 
 export default DiceRadio

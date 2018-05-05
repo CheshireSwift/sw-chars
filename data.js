@@ -1,7 +1,3 @@
-/* eslint-env browser */
-/* global
-  firebase
-  */
 'use strict'
 
 // Initialize Firebase

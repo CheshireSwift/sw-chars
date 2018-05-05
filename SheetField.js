@@ -1,11 +1,8 @@
-/* global
-  _
-  h
-  PropTypes
-  */
 'use strict'
 
-const SheetField = props => h('div', {
+const { div } = nativeTags
+
+const SheetField = props => div({
   style: {
     position: 'absolute',
     paddingTop: _.get(props.position, 'bottom'),

@@ -1,8 +1,3 @@
-/* global
-  _
-  React
-  h
-  */
 'use strict'
 
 import formConfig from './formConfig.js'
@@ -43,6 +38,10 @@ class BoundSheet extends React.Component {
       ...formConfig[field],
     })))
   }
+}
+
+BoundSheet.propTypes = {
+  docRef: PropTypes.object.isRequired,
 }
 
 export default BoundSheet
