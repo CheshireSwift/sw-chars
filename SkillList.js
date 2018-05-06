@@ -1,8 +1,19 @@
 const { button, div, input } = nativeTags
 
 class SkillRow extends React.Component {
+  constructor(props) {
+    super(props)
+    this.onBlur = this.onBlur.bind(this)
+  }
+
   skillChanged(rowChange) {
     this.props.onChange({ ...this.props.row, ...rowChange })
+  }
+
+  onBlur() {
+    if (this.props.row.skill === '') {
+      this.props.onChange(null)
+    }
   }
 
   render() {
@@ -23,12 +34,14 @@ class SkillRow extends React.Component {
         },
         value: this.props.row.skill,
         onChange: (e) => { this.skillChanged({ skill: e.target.value }) },
+        onBlur: this.onBlur,
       }),
       h(Popup, {
         position: 'right center',
         closeOnDocumentTrick: true,
         contentStyle: { width: 'initial' },
         trigger: button({
+          disabled: this.props.row.skill === '',
           style: {
             fontSize: 'smaller',
             padding: 0,
@@ -70,22 +83,18 @@ class SkillList extends React.Component {
   }
 
   children(fieldBackground) {
-    const buttonSuffix = _.size(this.value) < 16 ? [
-      button({
-        style: { width: '40%', padding: '1%' },
-        onClick: () => { this.changed(this.value.concat([ { skill: '', d: null } ])) },
-      }, h('i', { className: 'fas fa-plus fa-lg', style: { margin: 'auto' } })),
-    ] : []
-    return _.map(this.value, (row, i) => h(SkillRow, {
+    const values = this.value.length < 16 ? this.value.concat([ { skill: '', d: null } ]) : this.value
+    return _.map(values, (row, i) => h(SkillRow, {
       row,
       fieldBackground,
       onChange: newRow => { this.rowChanged(i, newRow) },
-    })).concat(buttonSuffix)
+    }))
   }
 
   rowChanged(index, newRow) {
-    const value = [ ...this.value ]
-    value[index] = newRow
+    const newValue = [ ...this.value ]
+    newValue[index] = newRow
+    const value = _.filter(newValue)
     this.changed(value)
   }
 
