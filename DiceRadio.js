@@ -31,7 +31,6 @@ function shadow(applyShadow) {
   return applyShadow && 'inset 0px 0px 4px 2px hsla(35,75%,20%,1)'
 }
 
-
 const DiceRadio = props => div({ style: { ...props.style, ...radioGroupStyle } },
   diceValues.map(d =>
     div({ style: { paddingTop: `${paddingCalc(props)}%`, width: `${bubbleWidth}%` } },
@@ -46,9 +45,9 @@ const DiceRadio = props => div({ style: { ...props.style, ...radioGroupStyle } }
 )
 
 DiceRadio.propTypes = {
-  style: PropTypes.objectOf(PropTypes.string).isRequired,
+  style: PropTypes.objectOf(PropTypes.oneOfType([ PropTypes.string, PropTypes.number ])).isRequired,
   id: PropTypes.string.isRequired,
-  value: PropTypes.number.isRequired,
+  value: PropTypes.number,
   onChange: PropTypes.func.isRequired,
   position: PropTypes.objectOf(PropTypes.string).isRequired,
 }

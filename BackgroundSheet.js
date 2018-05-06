@@ -51,13 +51,13 @@ const ThemeSelector = props => div({ style: { position: 'absolute', width: '100%
   h(Popup, {
     trigger: ThemeSelectorButton,
     contentStyle: { width: 'initial' },
-    position: 'left center',
+    position: 'left top',
     closeOnDocumentClick: true,
   },
   themes.concat([ null ]) // include option to reset
     .map(theme => div({ key: theme },
       button({
-        style: { border: 'none', background: 'none', margin: 5 },
+        style: { margin: 5 },
         disabled: props.currentTheme === theme,
         onClick: () => { props.selectTheme(theme) },
       }, theme || 'default')

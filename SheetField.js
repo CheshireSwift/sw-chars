@@ -25,7 +25,7 @@ const SheetField = props => div({
       ...props.style,
     },
     type: props.type,
-    value: props.value || '',
+    value: props.value || (_.isString(props.component) ? '' : null),
     onChange: e => { props.onChange(e.target.value) },
     position: props.position,
   }),
@@ -33,21 +33,21 @@ const SheetField = props => div({
 
 SheetField.propTypes = {
   field: PropTypes.string.isRequired,
-  value: PropTypes.string,
-  component: PropTypes.oneOf([ PropTypes.string, PropTypes.func ]),
+  value: PropTypes.any,
+  component: PropTypes.oneOfType([ PropTypes.string, PropTypes.func ]),
   type: PropTypes.string,
   onChange: PropTypes.func,
   position: PropTypes.shape({
-    top: PropTypes.number.isRequired,
-    left: PropTypes.number.isRequired,
-    height: PropTypes.number.isRequired,
-    width: PropTypes.number.isRequired,
+    bottom: PropTypes.oneOfType([ PropTypes.string, PropTypes.number ]).isRequired,
+    left: PropTypes.oneOfType([ PropTypes.string, PropTypes.number ]).isRequired,
+    height: PropTypes.oneOfType([ PropTypes.string, PropTypes.number ]),
+    width: PropTypes.oneOfType([ PropTypes.string, PropTypes.number ]),
   }).isRequired,
-  style: PropTypes.objectOf(PropTypes.string),
+  style: PropTypes.objectOf(PropTypes.oneOfType([ PropTypes.string, PropTypes.number ])),
 }
 
 SheetField.defaultProps = {
-  value: '',
+  value: null,
   component: 'input',
   type: 'text',
   onChange: () => {},

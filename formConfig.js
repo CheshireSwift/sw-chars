@@ -1,4 +1,5 @@
 import DiceRadio from './DiceRadio.js'
+import SkillList from './SkillList.js'
 
 export default {
   'AgentName': {
@@ -92,4 +93,8 @@ export default {
     position: { bottom: '25.1%', left: '66.1%', height: '9999%' },
   },
   /* /Attributes */
+  'Skills': {
+    component: SkillList,
+    position: { bottom: '72%', left: '51%', width: '37%', height: '47%' },
+  },
 }
