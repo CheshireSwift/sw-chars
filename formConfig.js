@@ -1,5 +1,6 @@
 import DiceRadio from './DiceRadio.js'
 import SkillList from './SkillList.js'
+import SliderTracker from './SliderTracker.js'
 
 export default {
   'AgentName': {
@@ -96,5 +97,13 @@ export default {
   'Skills': {
     component: SkillList,
     position: { bottom: '72%', left: '51%', width: '37%', height: '47%' },
+  },
+  'Wounds': {
+    component: SliderTracker(5, 'column'),
+    position: { bottom: '75%', left: '88%', width: '3%', height: '27%' },
+  },
+  'Fatigue': {
+    component: SliderTracker(4, 'column-reverse'),
+    position: { bottom: '87%', left: '96%', width: '3%', height: '18.5%' },
   },
 }
